@@ -43,11 +43,11 @@ public class ClienteServiceImpl implements ClienteService{
     public ClienteDto actualizarCliente(Long id, ClienteToSaveDto clienteDto) throws NotFoundExceptionEntity {
         Cliente userInDb = clienteRepository.findById(id)
         .orElseThrow(() -> new NotFoundExceptionEntity("El cliente no pudo ser actualizado, verificar que el id si exista."));
-           //userInDb.setNombre(clienteDto.nombre());
-           //userInDb.setApellido(clienteDto.apellido());
-           //userInDb.setCedula(clienteDto.cedula());
-           //userInDb.setDireccion(clienteDto.direccion());
-           //userInDb.setTelefono(clienteDto.telefono());
+           userInDb.setNombre(clienteDto.nombre());
+           userInDb.setApellido(clienteDto.apellido());
+           userInDb.setCedula(clienteDto.cedula());
+           userInDb.setDireccion(clienteDto.direccion());
+           userInDb.setTelefono(clienteDto.telefono());
 
         Cliente clienteGuardado = clienteRepository.save(userInDb);
         

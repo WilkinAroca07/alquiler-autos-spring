@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Renta-Autos.iml" filepath="$PROJECT_DIR$/.idea/Renta-Autos.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Renta-Autos/Renta-Autos.iml" filepath="$PROJECT_DIR$/Renta-Autos/Renta-Autos.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/alquiler-autos-spring.iml" filepath="$PROJECT_DIR$/.idea/alquiler-autos-spring.iml" />
     </modules>
   </component>
 </project>

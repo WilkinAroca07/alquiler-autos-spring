@@ -45,10 +45,10 @@ public class AutoServiceImpl implements AutoService{
     public AutoDto actualizarAuto(Long id, AutoToSaveDto autoDto) throws NotFoundExceptionEntity  {
         Auto autoInDb = autoRepository.findById(id)
         .orElseThrow(() -> new NotFoundExceptionEntity("El auto no pudo ser encontrado, verificar que el id si exista."));
-       // autoInDb.setCiudad(autoDto.ciudad());
-        //autoInDb.setImagenUrl(autoDto.imagenUrl());
-        //autoInDb.setModelo(autoDto.modelo());
-        //autoInDb.setPrecio(autoDto.precio());
+        autoInDb.setCiudad(autoDto.ciudad());
+        autoInDb.setImagenUrl(autoDto.imagenUrl());
+        autoInDb.setModelo(autoDto.modelo());
+        autoInDb.setPrecio(autoDto.precio());
 
         Auto autoGuardado = autoRepository.save(autoInDb);
         
