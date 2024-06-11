@@ -10,19 +10,16 @@ import com.unimagdalena.Renta_Autos.dto.AutoToSaveDto;
 import com.unimagdalena.Renta_Autos.dto.mapper.AutoMapper;
 import com.unimagdalena.Renta_Autos.entities.Auto;
 import com.unimagdalena.Renta_Autos.repository.AutoRepository;
-import com.unimagdalena.exception.NotAbleToDeleteException;
-import com.unimagdalena.exception.NotFoundExceptionEntity;
+import com.unimagdalena.Renta_Autos.exception.NotAbleToDeleteException;
+import com.unimagdalena.Renta_Autos.exception.NotFoundExceptionEntity;
 
 
 @Service
 public class AutoServiceImpl implements AutoService{
     private final AutoRepository autoRepository;
-    private final AutoMapper autoMapper;
 
-    @Autowired
-    public AutoServiceImpl(AutoRepository autoRepository, AutoMapper autoMapper) {
+    public AutoServiceImpl(AutoRepository autoRepository) {
         this.autoRepository = autoRepository;
-        this.autoMapper = autoMapper;
     }
 
     
@@ -31,14 +28,14 @@ public class AutoServiceImpl implements AutoService{
     public AutoDto obtenerAutoById(Long id) throws NotFoundExceptionEntity {
         Auto auto = autoRepository.findById(id)
         .orElseThrow(() -> new NotFoundExceptionEntity("El auto no pudo ser encontrado, verificar que el id si exista."));
-        return autoMapper.entityToDto(auto);
+        return AutoMapper.instancia.entityToDto(auto);
         
     }
 
     @Override
     public AutoDto agregarAuto(AutoToSaveDto autoToSaveDto) {
-        Auto auto = autoMapper.toSaveDtoToEntity(autoToSaveDto);
-        return autoMapper.entityToDto(autoRepository.save(auto));
+        Auto auto = AutoMapper.instancia.toSaveDtoToEntity(autoToSaveDto);
+        return AutoMapper.instancia.entityToDto(autoRepository.save(auto));
     }
 
     @Override
@@ -52,7 +49,7 @@ public class AutoServiceImpl implements AutoService{
 
         Auto autoGuardado = autoRepository.save(autoInDb);
         
-        return autoMapper.entityToDto(autoGuardado);
+        return AutoMapper.instancia.entityToDto(autoGuardado);
     }
 
     @Override
@@ -66,7 +63,7 @@ public class AutoServiceImpl implements AutoService{
     public List<AutoDto> obtenerTodosAutos() {
         List<Auto> autos = autoRepository.findAll();
         return autos.stream()
-                .map(auto -> autoMapper.entityToDto(auto))
+                .map(auto -> AutoMapper.instancia.entityToDto(auto))
                 .toList();
         
     }

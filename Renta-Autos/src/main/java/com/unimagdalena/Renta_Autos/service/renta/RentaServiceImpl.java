@@ -15,22 +15,20 @@ import com.unimagdalena.Renta_Autos.entities.Cliente;
 import com.unimagdalena.Renta_Autos.entities.Renta;
 
 import com.unimagdalena.Renta_Autos.repository.RentaRepository;
-import com.unimagdalena.exception.NotAbleToDeleteException;
-import com.unimagdalena.exception.NotFoundExceptionEntity;
+import com.unimagdalena.Renta_Autos.exception.NotAbleToDeleteException;
+import com.unimagdalena.Renta_Autos.exception.NotFoundExceptionEntity;
 
 @Service
 public class RentaServiceImpl implements RentaService{
 
     private final RentaRepository rentaRepository;
-    private final RentaMapper rentaMapper;
     private final AutoRepository autoRepository;
     private final ClienteRepository clienteRepository;
 
     @Autowired
-    public RentaServiceImpl(RentaRepository rentaRepository, RentaMapper rentaMapper, AutoRepository autoRepository,
+    public RentaServiceImpl(RentaRepository rentaRepository,AutoRepository autoRepository,
                             ClienteRepository clienteRepository) {
         this.rentaRepository = rentaRepository;
-        this.rentaMapper = rentaMapper;
         this.autoRepository=autoRepository;
         this.clienteRepository=clienteRepository;
     }
@@ -39,12 +37,12 @@ public class RentaServiceImpl implements RentaService{
     public RentaDto getRentaById(Long id) throws NotFoundExceptionEntity {
          Renta renta = rentaRepository.findById(id)
         .orElseThrow(() -> new NotFoundExceptionEntity("la renta solicitada no pudo ser encontrado, verificar que el id si exista."));
-        return rentaMapper.entityToDto(renta);
+        return RentaMapper.instancia.entityToDto(renta);
     }
 
     @Override
     public RentaDto agregarRenta(RentaToSaveDto rentaToSaveDto) {
-        Renta renta = rentaMapper.toSaveDtoToEntity(rentaToSaveDto);
+        Renta renta = RentaMapper.instancia.toSaveDtoToEntity(rentaToSaveDto);
         Auto auto=autoRepository.findById(rentaToSaveDto.idAuto()).get();
         Cliente cliente=clienteRepository.findById(rentaToSaveDto.idCliente()).get();
 
@@ -64,7 +62,7 @@ public class RentaServiceImpl implements RentaService{
         autoRepository.save(auto);
         clienteRepository.save(cliente);
 
-        return rentaMapper.entityToDto(guardada);
+        return RentaMapper.instancia.entityToDto(guardada);
     }
 
     @Override
@@ -80,7 +78,7 @@ public class RentaServiceImpl implements RentaService{
         
         Renta rentaGuardada = rentaRepository.save(rentaInDb);
         
-        return rentaMapper.entityToDto(rentaGuardada);
+        return RentaMapper.instancia.entityToDto(rentaGuardada);
     }
 
     @Override
@@ -94,7 +92,7 @@ public class RentaServiceImpl implements RentaService{
     public List<RentaDto> getAllRents() {
         List<Renta> rentas = rentaRepository.findAll();
         return rentas.stream()
-                .map(renta -> rentaMapper.entityToDto(renta))
+                .map(renta -> RentaMapper.instancia.entityToDto(renta))
                 .toList();
     }
 

@@ -36,4 +36,52 @@ public class Renta {
     @JoinColumn(name = "renta_id")
     @JsonBackReference
     private Cliente cliente;
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setFechaInicio(LocalDate fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public void setFechaFinal(LocalDate fechaFinal) {
+        this.fechaFinal = fechaFinal;
+    }
+
+    public void setTotal(Double total) {
+        this.total = total;
+    }
+
+    public void setAuto(Auto auto) {
+        this.auto = auto;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public LocalDate getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public LocalDate getFechaFinal() {
+        return fechaFinal;
+    }
+
+    public Double getTotal() {
+        return total;
+    }
+
+    public Auto getAuto() {
+        return auto;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
 }

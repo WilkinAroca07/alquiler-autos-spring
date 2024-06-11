@@ -1,4 +1,4 @@
-package com.unimagdalena.exception;
+package com.unimagdalena.Renta_Autos.exception;
 
 public class NotFoundExceptionEntity extends Exception{
     public NotFoundExceptionEntity() {

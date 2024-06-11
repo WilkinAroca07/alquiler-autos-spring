@@ -3,7 +3,7 @@ import java.util.List;
 
 import com.unimagdalena.Renta_Autos.dto.AutoDto;
 import com.unimagdalena.Renta_Autos.dto.AutoToSaveDto;
-import com.unimagdalena.exception.NotFoundExceptionEntity;
+import com.unimagdalena.Renta_Autos.exception.NotFoundExceptionEntity;
 
 public interface AutoService {
     AutoDto obtenerAutoById(Long id)throws NotFoundExceptionEntity;

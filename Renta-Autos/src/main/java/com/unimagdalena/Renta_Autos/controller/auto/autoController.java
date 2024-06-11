@@ -17,7 +17,7 @@ import com.unimagdalena.Renta_Autos.dto.AutoToSaveDto;
 
 
 import com.unimagdalena.Renta_Autos.service.auto.AutoService;
-import com.unimagdalena.exception.NotFoundExceptionEntity;
+import com.unimagdalena.Renta_Autos.exception.NotFoundExceptionEntity;
 
 
 @RestController

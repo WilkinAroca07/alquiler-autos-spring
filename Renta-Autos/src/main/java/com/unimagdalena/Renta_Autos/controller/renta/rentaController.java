@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.unimagdalena.Renta_Autos.dto.RentaDto;
 import com.unimagdalena.Renta_Autos.dto.RentaToSaveDto;
 import com.unimagdalena.Renta_Autos.service.renta.RentaService;
-import com.unimagdalena.exception.NotFoundExceptionEntity;
+import com.unimagdalena.Renta_Autos.exception.NotFoundExceptionEntity;
 
 @RestController
 @RequestMapping("/api/v1/renta")

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import com.unimagdalena.Renta_Autos.dto.ClienteDto;
 import com.unimagdalena.Renta_Autos.dto.ClienteToSaveDto;
 import com.unimagdalena.Renta_Autos.service.cliente.ClienteService;
-import com.unimagdalena.exception.NotFoundExceptionEntity;
+import com.unimagdalena.Renta_Autos.exception.NotFoundExceptionEntity;
 
 @RestController
 @RequestMapping("/api/v1/clientes")

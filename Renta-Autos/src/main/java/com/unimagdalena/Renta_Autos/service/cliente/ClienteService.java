@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.unimagdalena.Renta_Autos.dto.ClienteDto;
 import com.unimagdalena.Renta_Autos.dto.ClienteToSaveDto;
-import com.unimagdalena.exception.NotFoundExceptionEntity;
+import com.unimagdalena.Renta_Autos.exception.NotFoundExceptionEntity;
 
 public interface ClienteService {
     ClienteDto obtenerClienteById(Long id)throws NotFoundExceptionEntity;

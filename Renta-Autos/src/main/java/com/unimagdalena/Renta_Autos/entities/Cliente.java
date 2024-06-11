@@ -29,4 +29,36 @@ public class Cliente {
     @OneToMany(mappedBy = "cliente",fetch = FetchType.EAGER)
     @JsonManagedReference
     private List<Renta> rentas;
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public void setRentas(List<Renta> rentas) {
+        this.rentas = rentas;
+    }
+
+    public List<Renta> getRentas() {
+        return rentas;
+    }
 }

@@ -10,19 +10,17 @@ import com.unimagdalena.Renta_Autos.dto.ClienteToSaveDto;
 import com.unimagdalena.Renta_Autos.dto.mapper.ClienteMapper;
 import com.unimagdalena.Renta_Autos.entities.Cliente;
 import com.unimagdalena.Renta_Autos.repository.ClienteRepository;
-import com.unimagdalena.exception.NotAbleToDeleteException;
-import com.unimagdalena.exception.NotFoundExceptionEntity;
+import com.unimagdalena.Renta_Autos.exception.NotAbleToDeleteException;
+import com.unimagdalena.Renta_Autos.exception.NotFoundExceptionEntity;
 
 @Service
 public class ClienteServiceImpl implements ClienteService{
 
      private final ClienteRepository clienteRepository;
-    private final ClienteMapper clienteMapper;
 
     @Autowired
-    public ClienteServiceImpl(ClienteRepository clienteRepository, ClienteMapper clienteMapper) {
+    public ClienteServiceImpl(ClienteRepository clienteRepository) {
         this.clienteRepository = clienteRepository;
-        this.clienteMapper = clienteMapper;
     }
 
 
@@ -30,13 +28,13 @@ public class ClienteServiceImpl implements ClienteService{
     public ClienteDto obtenerClienteById(Long id) throws NotFoundExceptionEntity {
        Cliente cliente = clienteRepository.findById(id)
         .orElseThrow(() -> new NotFoundExceptionEntity("El cliente no pudo ser encontrado, verificar que el id si exista."));
-        return clienteMapper.entityToDto(cliente);
+        return ClienteMapper.instancia.entityToDto(cliente);
     }
 
     @Override
     public ClienteDto agregarCliente(ClienteToSaveDto clienteToSaveDto) {
-        Cliente cliente = clienteMapper.toSaveDtoToEntity(clienteToSaveDto);
-        return clienteMapper.entityToDto(clienteRepository.save(cliente));
+        Cliente cliente = ClienteMapper.instancia.toSaveDtoToEntity(clienteToSaveDto);
+        return ClienteMapper.instancia.entityToDto(clienteRepository.save(cliente));
     }
 
     @Override
@@ -51,7 +49,7 @@ public class ClienteServiceImpl implements ClienteService{
 
         Cliente clienteGuardado = clienteRepository.save(userInDb);
         
-        return clienteMapper.entityToDto(clienteGuardado);
+        return ClienteMapper.instancia.entityToDto(clienteGuardado);
     }
 
     @Override
@@ -65,7 +63,7 @@ public class ClienteServiceImpl implements ClienteService{
     public List<ClienteDto> obtenerTodosLosClientes() {
         List<Cliente> clientes = clienteRepository.findAll();
         return clientes.stream()
-                .map(cliente -> clienteMapper.entityToDto(cliente))
+                .map(cliente -> ClienteMapper.instancia.entityToDto(cliente))
                 .toList();
     }
 

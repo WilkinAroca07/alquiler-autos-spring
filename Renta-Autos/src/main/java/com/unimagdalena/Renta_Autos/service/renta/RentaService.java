@@ -3,7 +3,7 @@ package com.unimagdalena.Renta_Autos.service.renta;
 import java.util.List;
 import com.unimagdalena.Renta_Autos.dto.RentaDto;
 import com.unimagdalena.Renta_Autos.dto.RentaToSaveDto;
-import com.unimagdalena.exception.NotFoundExceptionEntity;
+import com.unimagdalena.Renta_Autos.exception.NotFoundExceptionEntity;
 
 public interface RentaService {
 
